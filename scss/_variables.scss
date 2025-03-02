@@ -1,0 +1,16 @@
+@use "helpers" as *;
+
+:root {
+  --color-white: #ffffff;
+  --color-black: #2e2e2e;
+  --color-grey: #eee;
+  --color-orange: #ffb802;
+  --color-accent: #2aac6b;
+
+  --font-family-base: "Inter", sans-serif;
+
+  --container-width: #{rem(1322)};
+  --container-padding-x: #{rem(16)};
+
+  --transition-duration: 0.2s;
+}
