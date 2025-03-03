@@ -4,99 +4,64 @@ const HEADER_MENU_BTN = document.querySelector(".header__menu-btn");
 HEADER_MENU_BTN.addEventListener("click", () => {
   HEADER_MENU.classList.toggle("open");
   HEADER_MENU_BTN.classList.toggle("open");
+  document.body.classList.toggle("scroll-off");
 });
 
 HEADER_MENU.querySelectorAll("a").forEach((link) =>
   link.addEventListener("click", () => {
     HEADER_MENU.classList.remove("open");
     HEADER_MENU_BTN.classList.remove("open");
+    document.body.classList.remove("scroll-off");
   })
 );
 
-document.addEventListener("DOMContentLoaded", () => {
-  //   const slider = document.querySelector(".slider");
-  const sliderWrapper = document.querySelector(".advant__features");
-  const slides = sliderWrapper.querySelectorAll(".advant__feature");
-  const prevButton = document.querySelector(".prev");
-  const nextButton = document.querySelector(".next");
+const GALLERY = document.querySelector(".gallery-images");
+const LEFT_COLUMN = document.querySelector(
+  ".gallery-images__column--left .gallery-images__slider"
+);
+const CENTER_COLUMN = document.querySelector(
+  ".gallery-images__column--center .gallery-images__slider"
+);
+const RIGHT_COLUMN = document.querySelector(
+  ".gallery-images__column--right .gallery-images__slider"
+);
 
-  let currentIndex = 0;
-  let startX = 0;
-  let isDragging = false;
+CENTER_COLUMN.style.transform = `translateY(-${
+  (CENTER_COLUMN.children.length - 2) * 520
+}px)`;
 
-  const updateSlider = () => {
-    sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-  };
+const initialOffset = (CENTER_COLUMN.children.length - 2) * 520;
 
-  const showSlide = (index) => {
-    if (window.innerWidth > 767) return;
-    if (index < 0) {
-      currentIndex = slides.length - 1;
-    } else if (index >= slides.length) {
-      currentIndex = 0;
-    } else {
-      currentIndex = index;
-    }
-    updateSlider();
-  };
+let currentSlide = 0;
+let lastScrollTime = 0;
+const scrollDelay = 400;
 
-  prevButton.addEventListener("click", () => {
-    showSlide(currentIndex - 1);
-  });
+function scrollSlider(event) {
+  event.preventDefault();
 
-  nextButton.addEventListener("click", () => {
-    showSlide(currentIndex + 1);
-  });
+  const currentTime = new Date().getTime();
+  if (currentTime - lastScrollTime < scrollDelay) {
+    return;
+  }
 
-  sliderWrapper.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    startX = e.pageX;
-  });
+  lastScrollTime = currentTime;
 
-  sliderWrapper.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
-    const currentX = e.pageX;
-    const diffX = startX - currentX;
-    if (Math.abs(diffX) > 50) {
-      if (diffX > 0) {
-        showSlide(currentIndex + 1);
-      } else {
-        showSlide(currentIndex - 1);
-      }
-      isDragging = false;
-    }
-  });
+  if (event.deltaY > 0) {
+    // down
+    currentSlide = Math.min(currentSlide + 1, LEFT_COLUMN.children.length - 2);
+    CENTER_COLUMN.style.transform = `translateY(${
+      -initialOffset + currentSlide * 520
+    }px)`;
+  } else {
+    //  up
+    currentSlide = Math.max(currentSlide - 1, 0);
+    CENTER_COLUMN.style.transform = `translateY(-${
+      initialOffset - currentSlide * 520
+    }px)`;
+  }
 
-  sliderWrapper.addEventListener("touchstart", (e) => {
-    isDragging = true;
-    startX = e.touches[0].clientX;
-  });
+  LEFT_COLUMN.style.transform = `translateY(-${currentSlide * 520}px)`;
+  RIGHT_COLUMN.style.transform = `translateY(-${currentSlide * 520}px)`;
+}
 
-  sliderWrapper.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
-    const currentX = e.touches[0].clientX;
-    const diffX = startX - currentX;
-    if (Math.abs(diffX) > 50) {
-      if (diffX > 0) {
-        showSlide(currentIndex + 1);
-      } else {
-        showSlide(currentIndex - 1);
-      }
-      isDragging = false;
-    }
-  });
-
-  sliderWrapper.addEventListener("touchend", () => {
-    isDragging = false;
-  });
-
-  const handleResize = () => {
-    if (window.innerWidth > 767) {
-      sliderWrapper.style.transform = "translateX(0)";
-    }
-  };
-
-  handleResize();
-
-  window.addEventListener("resize", handleResize);
-});
+GALLERY.addEventListener("wheel", scrollSlider, { passive: false });

@@ -1,0 +1,60 @@
+@use "../helpers/" as *;
+
+.gallery {
+  padding-top: 100px;
+}
+
+.gallery__title {
+  @include fluid-text(36, 64);
+  margin-bottom: 40px;
+  font-family: var(--font-family);
+  font-weight: 800;
+  line-height: 131%;
+  color: var(--color-black);
+}
+
+.gallery__tags {
+  margin-bottom: 80px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  li {
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--color-black);
+
+    &:not(:last-of-type) {
+      border-radius: 100px;
+      padding: 20px 30px;
+      background: #efefef;
+    }
+  }
+}
+
+.gallery-images {
+  display: flex;
+  gap: 40px;
+}
+
+.gallery-images__column {
+  max-height: 1000px;
+  overflow: hidden;
+}
+
+.gallery-images__column--center {
+  .gallery-images__slider {
+    flex-direction: column-reverse;
+  }
+}
+
+.gallery-images__slider {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.gallery-images__item {
+}

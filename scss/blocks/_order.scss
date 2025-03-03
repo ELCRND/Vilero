@@ -1,0 +1,94 @@
+@use "../helpers/" as *;
+
+.order {
+}
+
+.order__container {
+  display: flex;
+  gap: 50px;
+}
+
+.order__img {
+}
+
+.order__text {
+}
+
+.order__title {
+  @include fluid-text(24, 48);
+  margin-bottom: 22px;
+  font-weight: 800;
+  color: #1e1e1e;
+}
+
+.order__description {
+  @include fluid-text(18, 20);
+  max-width: 421px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  color: var(--color-black);
+
+  &:last-of-type {
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+}
+
+.order__form {
+  display: grid;
+  gap: 20px;
+  grid-template-areas:
+    "name phone"
+    "count location"
+    "textarea textarea"
+    "submit .";
+
+  input,
+  textarea {
+    padding: 20px 30px;
+    border: none;
+    border-radius: 15px;
+    background: #f4f4f4;
+    resize: vertical;
+
+    &::placeholder {
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+.order-form__name {
+  grid-area: name;
+}
+
+.order-form__phone {
+  grid-area: phone;
+}
+
+.order-form__count {
+  grid-area: count;
+}
+
+.order-form__location {
+  grid-area: location;
+}
+
+.order-form__textarea {
+  grid-area: textarea;
+}
+
+.order-form__submit {
+  grid-area: submit;
+  border-radius: 100px;
+  padding: 24px 55px;
+  background: #2aac6b;
+  font-weight: 500;
+  font-size: 18px;
+  color: #fff;
+  transition: opacity 0.2s ease;
+
+  @include hover {
+    opacity: 0.85;
+  }
+}

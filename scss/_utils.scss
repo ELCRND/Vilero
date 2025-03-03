@@ -29,3 +29,8 @@
 .accent-color--orange {
   color: var(--color-orange);
 }
+
+.scroll-off {
+  height: 100vh;
+  overflow: hidden;
+}
