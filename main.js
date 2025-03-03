@@ -1,3 +1,4 @@
+// ========================HEADER-MENU===========================
 const HEADER_MENU = document.querySelector(".header__wrap");
 const HEADER_MENU_BTN = document.querySelector(".header__menu-btn");
 
@@ -14,7 +15,10 @@ HEADER_MENU.querySelectorAll("a").forEach((link) =>
     document.body.classList.remove("scroll-off");
   })
 );
-
+//
+//
+//
+// ===========================GALLERY===========================
 const GALLERY = document.querySelector(".gallery-images");
 const LEFT_COLUMN = document.querySelector(
   ".gallery-images__column--left .gallery-images__slider"
@@ -26,42 +30,53 @@ const RIGHT_COLUMN = document.querySelector(
   ".gallery-images__column--right .gallery-images__slider"
 );
 
-CENTER_COLUMN.style.transform = `translateY(-${
-  (CENTER_COLUMN.children.length - 2) * 520
-}px)`;
-
-const initialOffset = (CENTER_COLUMN.children.length - 2) * 520;
-
 let currentSlide = 0;
 let lastScrollTime = 0;
-const scrollDelay = 400;
+const visibleSlideQuant = 2; // минимальное количество слайдов
+const scrollDelay = 400; // задержка между прокруткой;
+const slideHeight = LEFT_COLUMN.children[0].clientHeight;
+const gap = +window.getComputedStyle(LEFT_COLUMN).gap.replaceAll(/[a-z]/g, "");
+const tresholdOffset =
+  (CENTER_COLUMN.children.length - visibleSlideQuant) * (slideHeight + gap); // компенсация начального смещения центральной колонки
 
-function scrollSlider(event) {
-  event.preventDefault();
+CENTER_COLUMN.style.transform = `translateY(-${
+  (CENTER_COLUMN.children.length - visibleSlideQuant) * (slideHeight + gap)
+}px)`; // смещение центральной колонки вверх до двух последних элементов
+
+function scrollSlider(e) {
+  e.preventDefault();
 
   const currentTime = new Date().getTime();
   if (currentTime - lastScrollTime < scrollDelay) {
     return;
   }
-
   lastScrollTime = currentTime;
 
-  if (event.deltaY > 0) {
-    // down
-    currentSlide = Math.min(currentSlide + 1, LEFT_COLUMN.children.length - 2);
-    CENTER_COLUMN.style.transform = `translateY(${
-      -initialOffset + currentSlide * 520
-    }px)`;
-  } else {
-    //  up
-    currentSlide = Math.max(currentSlide - 1, 0);
-    CENTER_COLUMN.style.transform = `translateY(-${
-      initialOffset - currentSlide * 520
-    }px)`;
-  }
+  e.deltaY > 0 ? hadleScrollDown() : handleScrollUp();
 
-  LEFT_COLUMN.style.transform = `translateY(-${currentSlide * 520}px)`;
-  RIGHT_COLUMN.style.transform = `translateY(-${currentSlide * 520}px)`;
+  LEFT_COLUMN.style.transform = `translateY(-${
+    currentSlide * (slideHeight + gap)
+  }px)`;
+  RIGHT_COLUMN.style.transform = `translateY(-${
+    currentSlide * (slideHeight + gap)
+  }px)`;
+}
+
+function hadleScrollDown() {
+  currentSlide = Math.min(
+    currentSlide + 1,
+    LEFT_COLUMN.children.length - visibleSlideQuant
+  );
+  CENTER_COLUMN.style.transform = `translateY(${
+    -tresholdOffset + currentSlide * (slideHeight + gap)
+  }px)`;
+}
+
+function handleScrollUp() {
+  currentSlide = Math.max(currentSlide - 1, 0);
+  CENTER_COLUMN.style.transform = `translateY(-${
+    tresholdOffset - currentSlide * (slideHeight + gap)
+  }px)`;
 }
 
 GALLERY.addEventListener("wheel", scrollSlider, { passive: false });

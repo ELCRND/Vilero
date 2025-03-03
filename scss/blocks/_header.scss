@@ -189,6 +189,7 @@
   color: var(--color-white);
   transition: background-color 0.2s ease, color 0.2s ease;
   text-wrap: nowrap;
+  font-variant: lining-nums;
 
   @include mobile-above {
     &:hover {

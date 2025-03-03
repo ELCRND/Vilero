@@ -3,6 +3,7 @@
 .hero {
   padding-top: 102px;
   padding-bottom: 100px;
+  overflow: hidden;
 
   @include mobile {
     padding-top: 70px;
@@ -22,8 +23,12 @@
   @include tablet {
     grid-template-areas:
       "text"
-      "footer"
-      "images";
+      "images"
+      "footer";
+  }
+
+  @include mobile {
+    row-gap: 10px;
   }
 }
 
@@ -41,11 +46,23 @@
   @include tablet {
     background-image: none !important;
     width: 100%;
-    padding: 20px 20px 70px 20px;
+    padding: 20px;
     border-radius: 30px;
     background-color: #f9f9f9;
     align-items: center;
-    gap: 40px;
+    display: block;
+  }
+
+  @include mobile {
+    width: 300px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px 20px 0 20px;
+    background-image: url(../public/img/hero/hero-bg-767.png) !important;
+    border-radius: 0;
+    background-color: transparent;
+    gap: 0;
   }
 }
 
@@ -66,7 +83,7 @@
 }
 
 .hero__title {
-  @include fluid-text(36, 72);
+  @include fluid-text(38, 72);
   display: flex;
   flex-direction: column;
   font-weight: 800;
@@ -78,40 +95,49 @@
   @include tablet {
     align-items: center;
   }
+
+  @include mobile {
+    font-size: 38px;
+  }
 }
 
 .hero__subtitle {
+  @include fluid-text(16, 24);
   font-weight: 800;
   line-height: 100%;
   position: relative;
   z-index: 5;
-  font-size: 24px;
-
-  @media screen and (max-width: 1279px) {
-    font-size: 18px;
-  }
 
   @include tablet {
+    margin-top: 7px;
+    margin-bottom: 15px;
     text-align: center;
+  }
+
+  @include mobile {
+    font-size: 16px;
   }
 }
 
 .hero__description {
-  max-width: fluid(270, 404);
+  @include fluid-text(14, 20);
+  max-width: fluid(178, 400);
   font-weight: 600;
   line-height: 140%;
   color: var(--color-black);
-  font-size: 20px;
   position: relative;
   z-index: 5;
 
-  @media screen and (max-width: 1279px) {
-    font-size: 16px;
+  @include tablet {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 
-  @include tablet {
-    max-width: 404px;
-    text-align: center;
+  @include mobile {
+    margin: 0;
+    font-size: 14px;
+    text-align: left;
   }
 
   &:before {
@@ -127,15 +153,7 @@
     animation: arrow-move 2s ease-out infinite;
 
     @include tablet {
-      left: 20px;
-    }
-
-    @media screen and (max-width: 1079px) {
-      bottom: 0;
-    }
-    @include mobile {
-      left: -5px;
-      bottom: -10px;
+      display: none;
     }
   }
 
@@ -152,15 +170,7 @@
     animation: arrow-move 2s ease-out infinite;
 
     @include tablet {
-      left: 29px;
-    }
-
-    @media screen and (max-width: 1079px) {
-      bottom: 0;
-    }
-    @include mobile {
-      left: 4px;
-      bottom: -10px;
+      display: none;
     }
   }
 }
@@ -192,6 +202,14 @@
       display: none;
     }
 
+    @include mobile {
+      width: 90px;
+      height: 90px;
+      display: flex;
+      right: 50%;
+      translate: 167% -50%;
+    }
+
     &::before {
       @include abs-center;
       content: "";
@@ -205,6 +223,11 @@
     img {
       width: fluid(22, 76);
       height: fluid(22, 76);
+
+      @include mobile {
+        width: 62px;
+        height: 62px;
+      }
     }
   }
 
@@ -254,6 +277,16 @@
         width: 100%;
       }
     }
+
+    @include mobile {
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      img {
+        width: 300px;
+        height: 300px;
+      }
+    }
   }
 }
 
@@ -278,6 +311,12 @@
     gap: 30px;
   }
 
+  @include mobile {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   ul {
     width: 100%;
     display: flex;
@@ -288,16 +327,32 @@
     }
 
     @include mobile {
-      width: fit-content;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px 40px;
+      flex-direction: column;
+      gap: 30px;
     }
 
     li {
       display: flex;
       flex-direction: column;
       gap: 10px;
+
+      @include mobile {
+        align-items: center;
+        position: relative;
+
+        &:not(:last-of-type) {
+          &::before {
+            content: "";
+            width: 76px;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            translate: -50% 0;
+          }
+        }
+      }
 
       span {
         font-weight: 500;
@@ -306,20 +361,25 @@
       }
 
       b {
-        @include fluid-text(18, 24);
+        @include fluid-text(20, 24);
         font-weight: 600;
         line-height: 67%;
+
+        @include mobile {
+          line-height: 80%;
+        }
       }
     }
   }
 }
 
 .hero__link {
+  @include fluid-text(16, 18);
   padding: 30px 35px;
   border-radius: 50px;
   background-color: var(--color-white);
   font-weight: 600;
-  font-size: 18px;
+
   line-height: 89%;
   color: var(--color-accent);
   text-wrap: nowrap;
@@ -329,7 +389,7 @@
   }
 
   @include tablet {
-    padding: 15px 20px;
+    padding: 20px 25px;
   }
 }
 
@@ -343,6 +403,10 @@
 .hero-fir {
   top: 0;
   right: 65px;
+
+  @include mobile {
+    display: none;
+  }
 }
 
 .hero-lines-yellow {
@@ -351,8 +415,8 @@
   rotate: 10deg;
 
   @include tablet {
-    top: 90px;
-    left: 20px;
+    top: 9px;
+    left: -20px;
     rotate: 0deg;
   }
 }
@@ -362,9 +426,9 @@
   left: 50%;
 
   @include tablet {
-    bottom: 20px;
+    bottom: 65px;
     left: auto;
-    right: 20px;
+    right: -20px;
   }
 }
 
@@ -373,4 +437,12 @@
   bottom: 0;
   left: 50%;
   translate: -100% 58%;
+
+  @include mobile {
+    bottom: 0;
+    right: 0;
+    left: auto;
+    z-index: 1;
+    translate: 5% 210%;
+  }
 }

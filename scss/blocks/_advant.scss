@@ -3,6 +3,10 @@
 .advant {
   padding-bottom: 100px;
   position: relative;
+
+  @include mobile {
+    padding-bottom: 50px;
+  }
 }
 
 .advant-lines-yellow {
@@ -38,6 +42,13 @@
   @include tablet {
     margin-bottom: 0;
   }
+
+  @include mobile {
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
 }
 
 .advant__chair {
@@ -52,10 +63,6 @@
 
   @include tablet {
     flex-direction: column;
-  }
-
-  @include mobile {
-    overflow: hidden;
   }
 }
 
@@ -74,7 +81,7 @@
 
   @include mobile {
     display: flex;
-    transition: transform 0.5s ease;
+    flex-direction: column;
   }
 }
 
@@ -107,13 +114,13 @@
     justify-items: center;
   }
 
-  @include mobile {
-    flex: 0 0 100%;
-  }
-
   &:nth-of-type(1) {
     align-self: end;
     translate: 50% 0;
+
+    @include mobile {
+      align-self: center;
+    }
 
     p {
       &:before {
@@ -176,7 +183,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        translate: fluid(-225, 64) 70%;
+        translate: fluid(-229, 64) 70%;
         rotate: -35deg;
       }
     }
@@ -289,11 +296,13 @@
     line-height: 111%;
     color: rgba(0, 0, 0, 0.5);
     position: relative;
+    z-index: 1;
 
     &:before,
     &::after {
       opacity: 0;
       transition: opacity 0.4s ease;
+      z-index: -1;
     }
 
     @include tablet {
@@ -305,30 +314,4 @@
       }
     }
   }
-}
-
-.slider-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  position: absolute;
-  top: 75%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  display: none;
-  z-index: 2;
-
-  @include mobile {
-    display: block;
-  }
-}
-
-.prev {
-  left: 10px;
-}
-
-.next {
-  right: 10px;
 }

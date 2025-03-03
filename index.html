@@ -50,7 +50,7 @@
 
 
     <!-- HERO -->
-    <secrion class="hero">
+    <secrion class="hero ">
         <div class="hero__container container">
 
             <div class="hero__text" style="background-image: url(public/img/hero/hero-bg.png);">
@@ -65,8 +65,17 @@
                 </p>
 
                 <img src="public/img/hero/hero-fir.png" alt="" class="hero-fir" width="168" height="100">
-                <img src="public/img/common/lines-yellow.svg" alt="" class="hero-lines-yellow" width="85" height="25">
-                <img src="public/img/common/lines-green.svg" alt="" class="hero-lines-green" width="85" height="25">
+                <picture>
+                    <source media="(max-width:767px )" srcset="public/img/common/lines-yellow.svg" width="57"
+                        height="28">
+                    <img src="public/img/common/lines-yellow.svg" alt="" class="hero-lines-yellow" width="85"
+                        height="25">
+                </picture>
+                <picture>
+                    <source media="(max-width:767px )" srcset="public/img/common/lines-green.svg" width="62"
+                        height="28">
+                    <img src="public/img/common/lines-green.svg" alt="" class="hero-lines-green" width="85" height="25">
+                </picture>
                 <img src="public/img/hero/hero-palm-list.png" alt="" class="hero-palm-list" width="181" height="184">
             </div>
 
@@ -83,6 +92,7 @@
                 </div>
                 <div class="hero-main-img">
                     <picture>
+                        <source media="(max-width: 767px)" srcset="public/img/hero/hero-main-img-767.png" width="300">
                         <source media="(max-width: 1023px)" srcset="public/img/hero/hero-main-img-1024.png">
                         <img src="public/img/hero/hero-main-img.png" alt="" width="650">
                     </picture>
@@ -117,7 +127,7 @@
 
 
     <!-- ADVANT -->
-    <section class="advant">
+    <section class="advant ">
         <picture>
             <source media="(max-width:1023px )" srcset="public/img/common/lines-yellow.svg" width="70" height="35">
             <img class="advant-lines-yellow" src="public/img/common/lines-yellow.svg" alt="" width="127" height="60"
@@ -194,16 +204,13 @@
 
                 </ul>
 
-                <button class="slider-button prev">&#10094;</button>
-                <button class="slider-button next">&#10095;</button>
-
             </div>
         </div>
     </section>
 
 
     <!-- ORDER -->
-    <section class="order">
+    <section class="order ">
         <div class="order__container container">
 
             <div class="order__img">
@@ -213,7 +220,8 @@
 
             <div class="order__text">
                 <h2 class="order__title">Гарантия <span class="accent-color--green">12 месяцев!</span></h2>
-                <p class="order__description">Мы уверены в нашем качестве на 100%!</p>
+                <p class="order__description">Мы уверены в нашем качестве на <span class="order-bold-text">100%!</span>
+                </p>
                 <p class="order__description">Если шезлонг сломался - починим за 1 день или поменяем на новый</p>
 
                 <form action="" class="order__form order-form">
@@ -233,7 +241,7 @@
 
 
     <!-- GALLERY -->
-    <section class="gallery">
+    <section class="gallery ">
         <div class="gallery__container container">
 
             <h2 class="gallery__title">
@@ -342,7 +350,7 @@
 
 
     <!-- CLIENTS -->
-    <section class="clients">
+    <section class="clients ">
         <div class="clients__container container">
             <h2 class="clients__title">Наши <span class="accent-color--orange">клиенты</span></h2>
 
@@ -390,7 +398,7 @@
 
 
     <!-- CONTACTS -->
-    <section class="contacts">
+    <section class="contacts ">
         <div class="contacts__container container">
 
             <h2 class="contacts__title">Наши <span class="accent-color--orange">контакты</span></h2>
@@ -434,7 +442,7 @@
 
 
     <!-- FOOTER -->
-    <footer class="footer">
+    <footer class="footer ">
         <div class="footer__container container">
 
             <div class="footer__top">

@@ -1,17 +1,17 @@
 @use "../helpers/" as *;
 
-.order {
-}
-
 .order__container {
   display: flex;
   gap: 50px;
-}
 
-.order__img {
-}
+  @include tablet {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 
-.order__text {
+  @include mobile {
+    gap: 20px;
+  }
 }
 
 .order__title {
@@ -19,17 +19,30 @@
   margin-bottom: 22px;
   font-weight: 800;
   color: #1e1e1e;
+
+  @include tablet {
+    text-align: center;
+  }
 }
 
 .order__description {
-  @include fluid-text(18, 20);
+  @include fluid-text(16, 20);
   max-width: 421px;
   font-family: var(--font-family);
   font-weight: 400;
   color: var(--color-black);
 
+  @include tablet {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   &:last-of-type {
     margin-bottom: 30px;
+  }
+
+  .order-bold-text {
     font-weight: 600;
   }
 }
@@ -43,6 +56,24 @@
     "textarea textarea"
     "submit .";
 
+  @include tablet {
+    grid-template-areas:
+      "name phone"
+      "count location"
+      "textarea textarea"
+      "submit submit";
+  }
+
+  @include mobile-s {
+    grid-template-areas:
+      "name"
+      "phone"
+      "count"
+      "location"
+      "textarea"
+      "submit";
+  }
+
   input,
   textarea {
     padding: 20px 30px;
@@ -54,6 +85,12 @@
     &::placeholder {
       font-size: 16px;
       color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  textarea {
+    @include mobile {
+      min-height: 200px;
     }
   }
 }
@@ -86,9 +123,14 @@
   font-weight: 500;
   font-size: 18px;
   color: #fff;
+  text-wrap: nowrap;
   transition: opacity 0.2s ease;
 
   @include hover {
     opacity: 0.85;
+  }
+
+  @include mobile {
+    padding: 20px 25px;
   }
 }
