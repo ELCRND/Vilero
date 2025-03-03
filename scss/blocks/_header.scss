@@ -28,6 +28,12 @@
   display: flex;
   align-items: center;
 
+  &.open {
+    .header__navigation {
+      transition: translate 0.2s ease;
+    }
+  }
+
   @include tablet {
     width: fit-content;
     &.open {
@@ -50,10 +56,10 @@
     translate: 0 -100vh;
     background-color: var(--color-accent);
     z-index: 100;
-    transition: translate 0.2s ease;
 
     &.open {
       translate: 0 0;
+      transition: translate 0.2s ease;
     }
   }
 }
@@ -74,7 +80,6 @@
     translate: 0 -100vh;
     background-color: var(--color-accent);
     z-index: 100;
-    transition: translate 0.2s ease;
   }
 
   @include mobile {

@@ -118,17 +118,31 @@
 
     <!-- ADVANT -->
     <section class="advant">
+        <picture>
+            <source media="(max-width:1023px )" srcset="public/img/common/lines-yellow.svg" width="70" height="35">
+            <img class="advant-lines-yellow" src="public/img/common/lines-yellow.svg" alt="" width="127" height="60"
+                loading="lazy">
+        </picture>
+        <picture>
+            <source media="(max-width:1023px )" srcset="public/img/common/lines-green.svg" width="75" height="38">
+            <img class="advant-lines-green" src="public/img/common/lines-green.svg" alt="" width="143" height="63"
+                loading="lazy">
+        </picture>
+
         <div class="advant__container container">
 
             <h2 class="advant__title">
                 Чем хороши
-                <span class="accent-color--orange">наши шезлонги</span>
-                ?
+                <span class="accent-color--orange">наши шезлонги</span>?
             </h2>
 
             <div class="advant__content">
                 <div class="advant__chair">
-                    <img src="public/img/advant/advant-chair.png" alt="" loading="lazy">
+                    <picture>
+                        <source media="(max-width:1023px)" srcset="public/img/advant/advant-chair.png" width="300"
+                            height="350">
+                        <img src="public/img/advant/advant-chair.png" alt="" width="503" height="599" loading="lazy">
+                    </picture>
                 </div>
 
                 <ul class="advant__features">
@@ -179,6 +193,9 @@
 
 
                 </ul>
+
+                <button class="slider-button prev">&#10094;</button>
+                <button class="slider-button next">&#10095;</button>
 
             </div>
         </div>

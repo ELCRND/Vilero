@@ -6,7 +6,7 @@
 
   @include mobile {
     padding-top: 70px;
-    padding-bottom: 70px;
+    padding-bottom: 40px;
   }
 }
 
@@ -81,11 +81,15 @@
 }
 
 .hero__subtitle {
-  @include fluid-text(18, 24);
   font-weight: 800;
   line-height: 100%;
   position: relative;
   z-index: 5;
+  font-size: 24px;
+
+  @media screen and (max-width: 1279px) {
+    font-size: 18px;
+  }
 
   @include tablet {
     text-align: center;
@@ -93,13 +97,17 @@
 }
 
 .hero__description {
-  @include fluid-text(16, 20);
   max-width: fluid(270, 404);
   font-weight: 600;
   line-height: 140%;
   color: var(--color-black);
+  font-size: 20px;
   position: relative;
   z-index: 5;
+
+  @media screen and (max-width: 1279px) {
+    font-size: 16px;
+  }
 
   @include tablet {
     max-width: 404px;
