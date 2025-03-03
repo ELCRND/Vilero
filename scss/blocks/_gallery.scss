@@ -9,7 +9,7 @@
   margin-bottom: 40px;
   font-family: var(--font-family);
   font-weight: 800;
-  line-height: 131%;
+  line-height: 130%;
   color: var(--color-black);
 }
 
@@ -54,7 +54,4 @@
   flex-direction: column;
   gap: 40px;
   transition: transform 0.5s ease-in-out;
-}
-
-.gallery-images__item {
 }
