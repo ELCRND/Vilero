@@ -7,7 +7,7 @@
 
   @include mobile {
     padding-top: 68px;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
   }
 }
 
@@ -34,7 +34,7 @@
 
 .hero__text {
   grid-area: text;
-  width: fluid(157, 650);
+  width: fluid(157, 630);
   padding: 90px 44px 0 44px;
   display: flex;
   flex-direction: column;
@@ -54,15 +54,21 @@
   }
 
   @include mobile {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    aspect-ratio: 1 / 0.7;
     margin-left: auto;
     margin-right: auto;
     padding: 30px 20px 0 20px;
     background-image: url(../public/img/hero/hero-bg-767.png) !important;
     border-radius: 0;
     background-color: transparent;
-    gap: 0;
+    display: flex;
+    gap: 16px;
+    background-size: 100% 100%;
+  }
+  @include mobile-s {
+    aspect-ratio: 1 / 1;
+    display: block;
   }
 }
 
@@ -99,6 +105,9 @@
   @include mobile {
     font-size: 38px;
   }
+  @include mobile-s {
+    align-items: start;
+  }
 }
 
 .hero__subtitle {
@@ -116,6 +125,10 @@
 
   @include mobile {
     font-size: 16px;
+  }
+
+  @include mobile-s {
+    text-align: left;
   }
 }
 
@@ -135,8 +148,12 @@
   }
 
   @include mobile {
+    max-width: 400px;
+  }
+
+  @include mobile-s {
+    max-width: 178px;
     margin: 0;
-    font-size: 14px;
     text-align: left;
   }
 
@@ -203,11 +220,16 @@
     }
 
     @include mobile {
-      width: 90px;
-      height: 90px;
+      width: 31%;
+      height: auto;
+      aspect-ratio: 1 / 0.7;
       display: flex;
-      right: 50%;
-      translate: 167% -50%;
+      top: 0;
+      right: 0;
+      translate: 0 -51%;
+    }
+    @include mobile-s {
+      aspect-ratio: 1 / 1;
     }
 
     &::before {
@@ -267,7 +289,7 @@
   }
 
   .hero-main-img {
-    width: fluid(157, 650);
+    width: fluid(157, 630);
 
     @include tablet {
       width: 100%;
@@ -279,12 +301,17 @@
     }
 
     @include mobile {
-      width: fit-content;
       margin-left: auto;
       margin-right: auto;
       img {
-        width: 300px;
-        height: 300px;
+        min-width: 100%;
+        aspect-ratio: 1 / 0.7;
+      }
+    }
+
+    @include mobile-s {
+      img {
+        aspect-ratio: 1 / 1;
       }
     }
   }
@@ -312,9 +339,8 @@
   }
 
   @include mobile {
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    justify-content: center;
   }
 
   ul {
@@ -327,19 +353,20 @@
     }
 
     @include mobile {
+      display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 30px;
     }
 
     li {
       display: flex;
       flex-direction: column;
+      position: relative;
       gap: 10px;
 
       @include mobile {
         align-items: center;
-        position: relative;
-
         &:not(:last-of-type) {
           &::before {
             content: "";
@@ -440,10 +467,10 @@
   user-select: none;
 
   @include mobile {
-    bottom: 0;
+    bottom: -100%;
     right: 0;
     left: auto;
     z-index: 1;
-    translate: 5% 210%;
+    translate: 9% 50%;
   }
 }
