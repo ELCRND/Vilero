@@ -30,7 +30,7 @@
 
   &.open {
     .header__navigation {
-      transition: translate 0.2s ease;
+      transition: translate 0.3s ease;
     }
   }
 
@@ -59,7 +59,7 @@
 
     &.open {
       translate: 0 0;
-      transition: translate 0.2s ease;
+      transition: translate 0.3s ease;
     }
   }
 }
@@ -222,7 +222,7 @@
     border-radius: 2px;
     width: 8px;
     height: 8px;
-    background: #d9d9d9;
+    background: var(--color-accent);
     transition: rotate 0.2s ease;
   }
 }

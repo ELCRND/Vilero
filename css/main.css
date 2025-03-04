@@ -364,7 +364,7 @@ a[class] {
   align-items: center;
 }
 .header__wrap.open .header__navigation {
-  transition: translate 0.2s ease;
+  transition: translate 0.3s ease;
 }
 @media (width <= 63.99875rem) {
   .header__wrap {
@@ -392,7 +392,7 @@ a[class] {
   }
   .header__wrap.open {
     translate: 0 0;
-    transition: translate 0.2s ease;
+    transition: translate 0.3s ease;
   }
 }
 
@@ -557,7 +557,7 @@ a[class] {
   border-radius: 2px;
   width: 8px;
   height: 8px;
-  background: #d9d9d9;
+  background: var(--color-accent);
   transition: rotate 0.2s ease;
 }
 
@@ -576,7 +576,7 @@ a[class] {
 }
 @media (width <= 47.99875rem) {
   .hero {
-    padding-top: 70px;
+    padding-top: 68px;
     padding-bottom: 40px;
   }
 }
