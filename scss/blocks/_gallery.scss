@@ -159,10 +159,6 @@
     }
   }
 
-  img {
-    min-height: 480px;
-  }
-
   @include mobile-s {
     aspect-ratio: 1 / 1;
     img {
