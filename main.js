@@ -118,7 +118,6 @@ window.addEventListener("resize", initGallery);
 //
 //
 //===========================ZOOM===========================
-
 const GALLERY_ZOOM_MODAL = document.querySelector(".gallery__modal");
 const GALLERY_ZOOM_MODAL_IMAGE = GALLERY_ZOOM_MODAL.querySelector(
   ".gallery-modal__content img"
@@ -149,6 +148,14 @@ GALLERY_ZOOM_IMAGE_BUTTON.forEach((image, idx) => {
 });
 
 GALLERY_CLOSE_MODAL_BUTTON.addEventListener("click", closeZoomModal);
+
+// закрытие при нажатии на фоновую область
+
+// GALLERY_ZOOM_MODAL.addEventListener("click", (e) => {
+//   if (!e.target.closest(".gallery-modal__content img")) {
+//     closeZoomModal();
+//   }
+// });
 
 window.addEventListener("resize", () => {
   if (window.innerWidth > 1023) {
