@@ -437,6 +437,7 @@
   bottom: 0;
   left: 50%;
   translate: -100% 58%;
+  user-select: none;
 
   @include mobile {
     bottom: 0;
