@@ -1,12 +1,17 @@
 @use "../helpers/" as *;
 
 .footer {
-  padding: 60px 80px;
   border-radius: 50px 50px 0 0;
   background-color: var(--color-accent);
+
+  @include mobile {
+    padding-bottom: 80px;
+    border-radius: 30px 30px 0 0;
+  }
 }
 
 .footer__container {
+  padding: fluid(20, 60) fluid(20, 80);
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -15,19 +20,60 @@
 .footer__top {
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 1279px) {
+    display: grid;
+    gap: 20px;
+    grid-template-areas:
+      "logo nav"
+      ". tel ";
+  }
+
+  @include mobile {
+    grid-template-areas:
+      "logo logo"
+      "nav tel";
+    justify-items: center;
+  }
+}
+
+.footer__logo {
+  grid-area: logo;
+  flex-shrink: 0;
 }
 
 .footer__navigation {
+  grid-area: nav;
+  max-width: 510px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 
+  @media screen and (max-width: 1279px) {
+    max-width: 100%;
+    width: fit-content;
+    margin-right: 0;
+  }
+
   ul {
     display: flex;
-    gap: 50px;
+    justify-content: space-between;
     font-weight: 400;
     font-size: 18px;
     line-height: 100%;
     color: var(--color-white);
+
+    @media screen and (max-width: 1279px) {
+      justify-content: start;
+      gap: 50px;
+    }
+
+    @include mobile {
+      gap: 0;
+      flex-direction: column;
+      gap: 16px;
+      font-size: 16px;
+    }
 
     a {
       @include hover {
@@ -38,8 +84,25 @@
   }
 }
 
+.footer__wrap {
+  grid-area: tel;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  @media screen and (max-width: 1279px) {
+    justify-self: end;
+  }
+
+  @include mobile {
+    justify-self: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
 .footer__whatsApp {
-  margin-right: 30px;
   width: 206px;
   height: 52px;
   padding: 7px 20px 7px 7px;
@@ -58,6 +121,11 @@
 
   @include hover {
     background-color: var(--color-white);
+  }
+
+  @include mobile {
+    font-size: 16px;
+    width: auto;
   }
 }
 
@@ -92,7 +160,7 @@
 }
 
 .footer__tel {
-  margin-left: 30px;
+  width: fit-content;
   padding: 15px 30px;
   border-radius: 50px;
   background-color: var(--color-orange);
@@ -103,10 +171,15 @@
   color: var(--color-white);
   transition: background-color 0.2s ease, color 0.2s ease;
   text-wrap: nowrap;
+  font-variant: lining-nums;
 
   @include hover {
     background-color: var(--color-white);
     color: var(--color-accent);
+  }
+
+  @include mobile {
+    font-size: 16px;
   }
 }
 
@@ -128,5 +201,9 @@
     top: 50%;
     right: 0;
     translate: 0 -50%;
+
+    @include mobile {
+      translate: 0 250%;
+    }
   }
 }
