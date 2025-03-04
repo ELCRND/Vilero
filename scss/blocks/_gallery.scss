@@ -197,9 +197,22 @@
   overflow: hidden;
 
   img {
-    width: 100%;
-    height: auto;
     position: absolute;
+
+    @include tablet {
+      width: 65%;
+      height: auto;
+    }
+
+    @include mobile {
+      width: 85%;
+      height: auto;
+    }
+
+    @include mobile-s {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 

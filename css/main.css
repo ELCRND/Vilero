@@ -1777,9 +1777,25 @@ a[class] {
   overflow: hidden;
 }
 .gallery-modal__content img {
-  width: 100%;
-  height: auto;
   position: absolute;
+}
+@media (width <= 63.99875rem) {
+  .gallery-modal__content img {
+    width: 65%;
+    height: auto;
+  }
+}
+@media (width <= 47.99875rem) {
+  .gallery-modal__content img {
+    width: 85%;
+    height: auto;
+  }
+}
+@media (width <= 30.06125rem) {
+  .gallery-modal__content img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .slide-left {

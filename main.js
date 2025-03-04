@@ -219,3 +219,9 @@ GALLERY_ZOOM_IMAGE_BUTTON.forEach((image, idx) => {
 });
 
 GALLERY_CLOSE_MODAL_BUTTON.addEventListener("click", closeZoomModal);
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 1023) {
+    closeZoomModal();
+  }
+});
