@@ -250,6 +250,7 @@ summary {
   --font-family-base: "Raleway", sans-serif;
   --container-width: 82.625rem;
   --container-padding-x: 1.25rem;
+  --transition-duration: 0.2s;
 }
 
 .container {
@@ -1058,6 +1059,9 @@ a[class] {
   position: absolute;
   top: 84px;
   left: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 @media (width <= 63.99875rem) {
   .advant-lines-yellow {
@@ -1076,6 +1080,9 @@ a[class] {
   position: absolute;
   top: 0;
   right: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 @media (width <= 63.99875rem) {
   .advant-lines-green {
@@ -1313,7 +1320,7 @@ a[class] {
   translate: -87px -105px;
   rotate: 230deg;
 }
-.advant__feature img {
+.advant__feature picture {
   grid-area: img;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -1542,6 +1549,7 @@ a[class] {
 @media (width <= 47.99875rem) {
   .gallery__tags {
     margin-bottom: 20px;
+    gap: 10px;
   }
 }
 .gallery__tags li {
@@ -1616,11 +1624,15 @@ a[class] {
 
 .gallery-images__item {
   flex-shrink: 0;
+  height: 480px;
 }
 .gallery-images__item img {
   min-height: 480px;
 }
 @media screen and (max-width: 1379px) {
+  .gallery-images__item {
+    height: auto;
+  }
   .gallery-images__item img {
     min-height: 380px;
   }
@@ -1678,7 +1690,7 @@ a[class] {
 .gallery__next {
   width: 40px;
   height: 40px;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   font-size: 24px;
@@ -1691,6 +1703,12 @@ a[class] {
   padding: 10px;
   cursor: pointer;
   border-radius: 50%;
+}
+@media (width <= 63.99875rem) {
+  .gallery__prev,
+  .gallery__next {
+    display: flex;
+  }
 }
 @media (width <= 30.06125rem) {
   .gallery__prev,
@@ -2158,6 +2176,11 @@ a[class] {
   font-variant: small-caps;
   color: rgba(255, 255, 255, 0.3);
   position: relative;
+}
+@media (width <= 47.99875rem) {
+  .footer__bottom {
+    font-size: 14px;
+  }
 }
 .footer__bottom div {
   display: flex;

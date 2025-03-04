@@ -14,6 +14,7 @@
   position: absolute;
   top: 84px;
   left: 0;
+  user-select: none;
 
   @include tablet {
     top: 50px;
@@ -30,6 +31,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  user-select: none;
 
   @include tablet {
     translate: 0 -100%;
@@ -289,7 +291,7 @@
     }
   }
 
-  img {
+  picture {
     grid-area: img;
     user-select: none;
   }
