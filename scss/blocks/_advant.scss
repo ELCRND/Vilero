@@ -118,6 +118,24 @@
   cursor: default;
 
   &:hover {
+    img {
+      &:first-of-type {
+        opacity: 0;
+      }
+      &:last-of-type {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    h3 {
+      color: rgba(0, 0, 0, 1);
+    }
+
+    p {
+      color: rgba(0, 0, 0, 1);
+    }
+
     p:before,
     p::after {
       opacity: 1;
@@ -291,9 +309,27 @@
     }
   }
 
-  picture {
+  img {
     grid-area: img;
     user-select: none;
+    transition: all 0.2s ease;
+
+    &:last-of-type {
+      position: absolute;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    @include tablet {
+      &:first-of-type {
+        display: none;
+      }
+      &:last-of-type {
+        position: static;
+        visibility: visible;
+        opacity: 1;
+      }
+    }
   }
 
   h3 {
@@ -302,6 +338,7 @@
     font-size: 20px;
     line-height: 100%;
     color: rgba(0, 0, 0, 0.5);
+    transition: color 0.2s ease;
 
     @include mobile {
       text-align: center;
@@ -319,6 +356,7 @@
     color: rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 1;
+    transition: color 0.2s ease;
 
     @include mobile {
       max-width: 280px;

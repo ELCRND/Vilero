@@ -708,7 +708,7 @@ a[class] {
 
 .hero__description {
   font-size: clamp(0.875rem, 0.6879251701rem + 0.6802721088vw, 1.25rem);
-  max-width: clamp(11.125rem, 4.2032312925rem + 25.1700680272vw, 25rem);
+  max-width: clamp(17.375rem, 13.4152494331rem + 14.3990929705vw, 25.3125rem);
   font-weight: 600;
   line-height: 140%;
   color: var(--color-black);
@@ -1214,6 +1214,19 @@ a[class] {
   z-index: 1;
   cursor: default;
 }
+.advant__feature:hover img:first-of-type {
+  opacity: 0;
+}
+.advant__feature:hover img:last-of-type {
+  opacity: 1;
+  visibility: visible;
+}
+.advant__feature:hover h3 {
+  color: rgb(0, 0, 0);
+}
+.advant__feature:hover p {
+  color: rgb(0, 0, 0);
+}
 .advant__feature:hover p:before,
 .advant__feature:hover p::after {
   opacity: 1;
@@ -1355,11 +1368,27 @@ a[class] {
   translate: -87px -105px;
   rotate: 230deg;
 }
-.advant__feature picture {
+.advant__feature img {
   grid-area: img;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  transition: all 0.2s ease;
+}
+.advant__feature img:last-of-type {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+}
+@media (width <= 63.99875rem) {
+  .advant__feature img:first-of-type {
+    display: none;
+  }
+  .advant__feature img:last-of-type {
+    position: static;
+    visibility: visible;
+    opacity: 1;
+  }
 }
 .advant__feature h3 {
   grid-area: title;
@@ -1367,6 +1396,7 @@ a[class] {
   font-size: 20px;
   line-height: 100%;
   color: rgba(0, 0, 0, 0.5);
+  transition: color 0.2s ease;
 }
 @media (width <= 47.99875rem) {
   .advant__feature h3 {
@@ -1384,6 +1414,7 @@ a[class] {
   color: rgba(0, 0, 0, 0.5);
   position: relative;
   z-index: 1;
+  transition: color 0.2s ease;
 }
 @media (width <= 47.99875rem) {
   .advant__feature p {
