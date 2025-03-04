@@ -83,7 +83,9 @@
     align-items: center;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
-    transition: transform 0.5s ease-in-out;
+    scroll-snap-stop: always;
+    transition: transform 0.8s ease;
+    scroll-behavior: smooth;
   }
 
   @include mobile {
@@ -130,6 +132,23 @@
   flex-shrink: 0;
   height: 480px;
 
+  @media screen and (max-width: 1379px) {
+    height: auto;
+    img {
+      min-height: 380px;
+    }
+  }
+  @include tablet {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: center;
+    scroll-snap-align: center;
+  }
+
+  @include tablet {
+    flex: 0 0 100%;
+  }
+
   div {
     height: fit-content;
     border-radius: 20px;
@@ -142,22 +161,6 @@
 
   img {
     min-height: 480px;
-  }
-  @media screen and (max-width: 1379px) {
-    height: auto;
-    img {
-      min-height: 380px;
-    }
-  }
-  @include tablet {
-    flex: 0 0 50%;
-    display: flex;
-    justify-content: center;
-    scroll-snap-align: start;
-  }
-
-  @include tablet {
-    flex: 0 0 100%;
   }
 
   @include mobile-s {
