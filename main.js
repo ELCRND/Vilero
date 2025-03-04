@@ -208,10 +208,16 @@ function openZoomModal(index) {
 
   GALLERY_ZOOM_MODAL.style.display = "flex";
   GALLERY_ZOOM_MODAL_IMAGE.src = GALLERY_IMAGES[currentImageIndex].src;
+
+  history.pushState({ modalOpen: true }, "");
 }
 
 function closeZoomModal() {
   GALLERY_ZOOM_MODAL.style.display = "none";
+
+  if (history.state && history.state.modalOpen) {
+    history.back();
+  }
 }
 
 GALLERY_ZOOM_IMAGE_BUTTON.forEach((image, idx) => {
@@ -219,3 +225,9 @@ GALLERY_ZOOM_IMAGE_BUTTON.forEach((image, idx) => {
 });
 
 GALLERY_CLOSE_MODAL_BUTTON.addEventListener("click", closeZoomModal);
+
+window.addEventListener("popstate", (event) => {
+  if (event.state && event.state.modalOpen) {
+    closeZoomModal();
+  }
+});
