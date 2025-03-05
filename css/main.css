@@ -1080,14 +1080,8 @@ a[class] {
 }
 
 .advant {
-  padding-bottom: 100px;
   position: relative;
   overflow: hidden;
-}
-@media (width <= 47.99875rem) {
-  .advant {
-    padding-bottom: 50px;
-  }
 }
 
 .advant-lines-yellow {
@@ -1434,6 +1428,15 @@ a[class] {
   }
   .advant__feature p:before, .advant__feature p::after {
     display: none;
+  }
+}
+
+.order {
+  padding-top: 90px;
+}
+@media (width <= 47.99875rem) {
+  .order {
+    padding-top: 50px;
   }
 }
 
@@ -1841,24 +1844,29 @@ a[class] {
 
 .gallery-modal__prev,
 .gallery-modal__next {
-  padding: 25px;
-  background-color: rgba(0, 0, 0, 0.5);
-  font-size: 44px;
-  color: var(--color-white);
   position: absolute;
   top: 50%;
-  left: 0;
-  translate: 0 -50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
   z-index: 1001;
 }
-.gallery-modal__prev:active,
-.gallery-modal__next:active {
-  color: var(--color-accent);
+
+.gallery-modal__prev {
+  left: 10px;
 }
 
 .gallery-modal__next {
-  left: auto;
-  right: 0;
+  right: 10px;
+}
+
+.gallery-modal__prev:hover,
+.gallery-modal__next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .clients {

@@ -1,5 +1,12 @@
 @use "../helpers/" as *;
 
+.order {
+  padding-top: 90px;
+  @include mobile {
+    padding-top: 50px;
+  }
+}
+
 .order__container {
   display: flex;
   gap: 50px;

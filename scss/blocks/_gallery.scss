@@ -254,22 +254,27 @@
 
 .gallery-modal__prev,
 .gallery-modal__next {
-  padding: 25px;
-  background-color: rgba(0, 0, 0, 0.5);
-  font-size: 44px;
-  color: var(--color-white);
   position: absolute;
   top: 50%;
-  left: 0;
-  translate: 0 -50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
   z-index: 1001;
+}
 
-  &:active {
-    color: var(--color-accent);
-  }
+.gallery-modal__prev {
+  left: 10px;
 }
 
 .gallery-modal__next {
-  left: auto;
-  right: 0;
+  right: 10px;
+}
+
+.gallery-modal__prev:hover,
+.gallery-modal__next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }

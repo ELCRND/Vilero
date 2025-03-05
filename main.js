@@ -113,41 +113,41 @@ function initGallery() {
 }
 
 initGallery();
-window.addEventListener("resize", initGallery);
-//
-//
-//
-//===========================ZOOM===========================
-const GALLERY_ZOOM_MODAL = document.querySelector(".gallery__modal");
-const GALLERY_ZOOM_MODAL_IMAGE = GALLERY_ZOOM_MODAL.querySelector(
-  ".gallery-modal__content img"
-);
-const GALLERY_CLOSE_MODAL_BUTTON = GALLERY_ZOOM_MODAL.querySelector(
-  ".gallery-modal__close"
-);
-const GALLERY_ZOOM_IMAGE_BUTTON = document.querySelectorAll(
-  ".gallery-images__item"
-);
-const GALLERY_IMAGES = document.querySelectorAll(".gallery-images__item img");
+// window.addEventListener("resize", initGallery);
+// //
+// //
+// //
+// //===========================ZOOM===========================
+// const GALLERY_ZOOM_MODAL = document.querySelector(".gallery__modal");
+// const GALLERY_ZOOM_MODAL_IMAGE = GALLERY_ZOOM_MODAL.querySelector(
+//   ".gallery-modal__content img"
+// );
+// const GALLERY_CLOSE_MODAL_BUTTON = GALLERY_ZOOM_MODAL.querySelector(
+//   ".gallery-modal__close"
+// );
+// const GALLERY_ZOOM_IMAGE_BUTTON = document.querySelectorAll(
+//   ".gallery-images__item"
+// );
+// const GALLERY_IMAGES = document.querySelectorAll(".gallery-images__item img");
 
-let currentImageIndex = 0;
+// let currentImageIndex = 0;
 
-function openZoomModal(index) {
-  currentImageIndex = index;
+// function openZoomModal(index) {
+//   currentImageIndex = index;
 
-  GALLERY_ZOOM_MODAL.style.display = "flex";
-  GALLERY_ZOOM_MODAL_IMAGE.src = GALLERY_IMAGES[currentImageIndex].src;
-}
+//   GALLERY_ZOOM_MODAL.style.display = "flex";
+//   GALLERY_ZOOM_MODAL_IMAGE.src = GALLERY_IMAGES[currentImageIndex].src;
+// }
 
-function closeZoomModal() {
-  GALLERY_ZOOM_MODAL.style.display = "none";
-}
+// function closeZoomModal() {
+//   GALLERY_ZOOM_MODAL.style.display = "none";
+// }
 
-GALLERY_ZOOM_IMAGE_BUTTON.forEach((image, idx) => {
-  image.addEventListener("click", () => openZoomModal(idx));
-});
+// GALLERY_ZOOM_IMAGE_BUTTON.forEach((image, idx) => {
+//   image.addEventListener("click", () => openZoomModal(idx));
+// });
 
-GALLERY_CLOSE_MODAL_BUTTON.addEventListener("click", closeZoomModal);
+// GALLERY_CLOSE_MODAL_BUTTON.addEventListener("click", closeZoomModal);
 
 // закрытие при нажатии на фоновую область
 
@@ -160,5 +160,89 @@ GALLERY_CLOSE_MODAL_BUTTON.addEventListener("click", closeZoomModal);
 window.addEventListener("resize", () => {
   if (window.innerWidth > 1023) {
     closeZoomModal();
+  }
+});
+
+const GALLERY_ZOOM_MODAL = document.querySelector(".gallery__modal");
+const GALLERY_ZOOM_MODAL_IMAGE = GALLERY_ZOOM_MODAL.querySelector(
+  ".gallery-modal__content img"
+);
+const GALLERY_CLOSE_MODAL_BUTTON = GALLERY_ZOOM_MODAL.querySelector(
+  ".gallery-modal__close"
+);
+const GALLERY_PREV_BUTTON = GALLERY_ZOOM_MODAL.querySelector(
+  ".gallery-modal__prev"
+);
+const GALLERY_NEXT_BUTTON = GALLERY_ZOOM_MODAL.querySelector(
+  ".gallery-modal__next"
+);
+const GALLERY_ZOOM_IMAGE_BUTTON = document.querySelectorAll(
+  ".gallery-images__item"
+);
+const GALLERY_IMAGES = document.querySelectorAll(".gallery-images__item img");
+
+let currentImageIndex = 0;
+
+function openZoomModal(index) {
+  currentImageIndex = index;
+  GALLERY_ZOOM_MODAL.style.display = "flex";
+  GALLERY_ZOOM_MODAL_IMAGE.src = GALLERY_IMAGES[currentImageIndex].src;
+}
+
+function closeZoomModal() {
+  GALLERY_ZOOM_MODAL.style.display = "none";
+}
+
+function showNextImage() {
+  currentImageIndex = (currentImageIndex + 1) % GALLERY_IMAGES.length;
+  GALLERY_ZOOM_MODAL_IMAGE.src = GALLERY_IMAGES[currentImageIndex].src;
+}
+
+function showPrevImage() {
+  currentImageIndex =
+    (currentImageIndex - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length;
+  GALLERY_ZOOM_MODAL_IMAGE.src = GALLERY_IMAGES[currentImageIndex].src;
+}
+
+GALLERY_ZOOM_IMAGE_BUTTON.forEach((image, idx) => {
+  image.addEventListener("click", () => openZoomModal(idx));
+});
+
+GALLERY_CLOSE_MODAL_BUTTON.addEventListener("click", closeZoomModal);
+GALLERY_PREV_BUTTON.addEventListener("click", showPrevImage);
+GALLERY_NEXT_BUTTON.addEventListener("click", showNextImage);
+
+// Свайпы
+let touchStartX = 0;
+let touchEndX = 0;
+
+GALLERY_ZOOM_MODAL.addEventListener("touchstart", (e) => {
+  touchStartX = e.touches[0].clientX;
+});
+
+GALLERY_ZOOM_MODAL.addEventListener("touchend", (e) => {
+  touchEndX = e.changedTouches[0].clientX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const swipeThreshold = 50;
+  const swipeDistance = touchEndX - touchStartX;
+
+  if (swipeDistance > swipeThreshold) {
+    showPrevImage();
+  } else if (swipeDistance < -swipeThreshold) {
+    showNextImage();
+  }
+}
+
+// Клавиатурная навигация
+document.addEventListener("keydown", (e) => {
+  if (GALLERY_ZOOM_MODAL.style.display === "flex") {
+    if (e.key === "ArrowLeft") {
+      showPrevImage();
+    } else if (e.key === "ArrowRight") {
+      showNextImage();
+    }
   }
 });
