@@ -1740,6 +1740,9 @@ a[class] {
   }
 }
 @media (width <= 30.06125rem) {
+  .gallery-images__item {
+    aspect-ratio: 0.7/1;
+  }
   .gallery-images__item img {
     width: 100%;
     height: 100%;

@@ -154,6 +154,7 @@
   }
 
   @include mobile-s {
+    aspect-ratio: 0.7 / 1;
     img {
       width: 100%;
       height: 100%;
