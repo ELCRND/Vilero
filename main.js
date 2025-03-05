@@ -36,7 +36,7 @@ let tresholdOffset = 0;
 const visibleSlideQuant = 2; // минимальное количество слайдов
 const scrollDelay = 500; // задержка между прокруткой;
 const speed = 1000; // скорость прокрутки в мс
-const slideHeight = LEFT_COLUMN.children[0].clientHeight;
+const slideHeight = () => LEFT_COLUMN.children[0].clientHeight;
 const totalSlides = Math.max(
   LEFT_COLUMN.children.length,
   CENTER_COLUMN.children.length,
@@ -65,24 +65,24 @@ function scrollSlider(e) {
   e.deltaY > 0 ? hadleScrollDown() : handleScrollUp();
 
   LEFT_COLUMN.style.transform = `translateY(-${
-    currentSlide * (slideHeight + gap)
+    currentSlide * (slideHeight() + gap)
   }px)`;
   RIGHT_COLUMN.style.transform = `translateY(-${
-    currentSlide * (slideHeight + gap)
+    currentSlide * (slideHeight() + gap)
   }px)`;
 }
 
 function hadleScrollDown() {
   currentSlide = Math.min(currentSlide + 1, totalSlides - visibleSlideQuant);
   CENTER_COLUMN.style.transform = `translateY(${
-    -tresholdOffset + currentSlide * (slideHeight + gap)
+    -tresholdOffset + currentSlide * (slideHeight() + gap)
   }px)`;
 }
 
 function handleScrollUp() {
   currentSlide = Math.max(currentSlide - 1, 0);
   CENTER_COLUMN.style.transform = `translateY(-${
-    tresholdOffset - currentSlide * (slideHeight + gap)
+    tresholdOffset - currentSlide * (slideHeight() + gap)
   }px)`;
 }
 
@@ -92,14 +92,16 @@ function initGallery() {
     GALLERY.addEventListener("wheel", scrollSlider, { passive: false });
 
     tresholdOffset =
-      (CENTER_COLUMN.children.length - visibleSlideQuant) * (slideHeight + gap); // компенсация начального смещения центральной колонки
+      (CENTER_COLUMN.children.length - visibleSlideQuant) *
+      (slideHeight() + gap); // компенсация начального смещения центральной колонки
 
     [LEFT_COLUMN, CENTER_COLUMN, RIGHT_COLUMN].forEach(
       (slider) => (slider.style.transition = `transform ${speed}ms ease-out`)
     );
 
     CENTER_COLUMN.style.transform = `translateY(-${
-      (CENTER_COLUMN.children.length - visibleSlideQuant) * (slideHeight + gap)
+      (CENTER_COLUMN.children.length - visibleSlideQuant) *
+      (slideHeight() + gap)
     }px)`; // смещение центральной колонки вверх до двух последних элементов
   } else {
     GALLERY.removeEventListener("wheel", scrollSlider);
@@ -107,9 +109,10 @@ function initGallery() {
     [LEFT_COLUMN, CENTER_COLUMN, RIGHT_COLUMN].forEach(
       (slider) => (slider.style.transition = `none`)
     );
-
-    CENTER_COLUMN.style.transform = `translateY(0)`;
   }
+  LEFT_COLUMN.style.transform = `translateY(0)`;
+  CENTER_COLUMN.style.transform = `translateY(0)`;
+  RIGHT_COLUMN.style.transform = `translateY(0)`;
 }
 
 initGallery();
@@ -249,8 +252,8 @@ function handleSwipe() {
 
 // закрытие при нажатии на фоновую область
 
-// GALLERY_ZOOM_MODAL.addEventListener("click", (e) => {
-//   if (!e.target.closest(".gallery-modal__content img")) {
-//     closeZoomModal();
-//   }
-// });
+GALLERY_ZOOM_MODAL.addEventListener("click", (e) => {
+  if (!e.target.closest(".gallery-modal__content img")) {
+    closeZoomModal();
+  }
+});
